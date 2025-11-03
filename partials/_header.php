@@ -21,16 +21,16 @@ echo '
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            top Categories
+            Top Categories
           </a>
           <ul class="dropdown-menu">';
 
           $sql = "SELECT categori_name, categori_id FROM `categories` LIMIT 3";
-
           $result = mysqli_query($conn, $sql);
-          while($row = mysqli_fetch_assoc($result)){
-          echo'<li><a class="dropdown-item" href="threadlist.php?catid='.  $row['categori_id'] .'">'. $row['categori_name'] .'</a></li>';
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '<li><a class="dropdown-item" href="threadlist.php?catid=' . $row['categori_id'] . '">' . $row['categori_name'] . '</a></li>';
           }
+
           echo '</ul>
         </li>
         <li class="nav-item">
@@ -41,25 +41,29 @@ echo '
 
     <div class="row mx-2">
 ';
+?>
 
+<?php
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     echo '
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <form class="d-flex" role="search" method="get" action="search.php">
+        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" required>
         <button class="btn btn-success" type="submit">Search</button>
-        <p class="mx-2 my-0 text-success "> Welcome ' . ($_SESSION['useremail']) . '</p>
-        <a href="partials/_logout.php" class="btn btn-outline-success ml-2">Logout</a>
+        <p class="mx-2 my-0 text-success">Welcome ' . ($_SESSION['useremail']) . '</p>
+        <a href="partials/_logout.php" class="btn btn-outline-success ms-2">Logout</a>
       </form>';
 } else {
     echo '
       <form class="d-flex" role="search" method="get" action="search.php">
-        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"/>
-        <button  class="btn btn-success" type="submit">Search</button>
-        <button type="button" class="btn btn-outline-success ml-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" required>
+        <button class="btn btn-success" type="submit">Search</button>
+        <button type="button" class="btn btn-outline-success ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
         <button type="button" class="btn btn-outline-success mx-2" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
       </form>';
 }
+?>
 
+<?php
 echo '
     </div>
   </div>

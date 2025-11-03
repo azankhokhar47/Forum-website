@@ -13,109 +13,52 @@
 
 <body>
     <?php
-   include 'partials/_dbconnect.php';
-   include 'partials/_header.php';
-?>
-    <!-- alter table threads add FULLTEXT(`thread_title`,`thread_desc`); -->
-    <div class="container my-3">
-        <h1 class="py-3">Search results for <em>"<?php echo $_GET['search'] ?>"</em></h1>
-
-        <?php
-        $query = $_GET["search"];
-    $sql = "select * from threads where match(thread_title,thread_desc) against ('$query')";
-    $result = mysqli_query($conn, $sql);
-    while($row = mysqli_fetch_assoc($result)){
-    $title = $row['thread_tittle'];
-    $desc = $row['thread_desc'];
-
-    echo'<div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>';
-}
+include 'partials/_dbconnect.php';
+include 'partials/_header.php';
 ?>
 
-        
+<div class="container my-3">
+  <h1 class="py-3">Search results for <em>"<?php echo $_GET['search'] ?>"</em></h1>
 
-        <div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic dolor libero.
-                Numquam commodi nesciunt placeat cupiditate eaque reiciendis possimus illo voluptates perferendis
-                tempora ipsam aspernatur iste magni ipsa culpa exercitationem, eligendi non blanditiis et maiores.
-                Provident rem dicta maxime. Fugit, saepe.
-                Unde doloremque tempore sed nostrum sequi quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>
+  <?php
+  $noresult = true;
+  $query = $_GET["search"];
+  $sql = "SELECT * FROM threads WHERE MATCH(thread_title, thread_desc) AGAINST ('$query')";
+  $result = mysqli_query($conn, $sql);
 
-        <div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic dolor libero.
-                Numquam commodi nesciunt placeat cupiditate eaque reiciendis possimus illo voluptates perferendis
-                tempora ipsam aspernatur iste magni ipsa culpa exercitationem, eligendi non blanditiis et maiores.
-                Provident rem dicta maxime. Fugit, saepe.
-                Unde doloremque tempore sed nostrum sequi quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>
+  while ($row = mysqli_fetch_assoc($result)) {
+      $title = $row['thread_title'];
+      $desc = $row['thread_desc'];
+      $thread_id = $row['thread_id'];
+      $url = "thread.php?threadid=" . $thread_id;
 
-        <div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic dolor libero.
-                Numquam commodi nesciunt placeat cupiditate eaque reiciendis possimus illo voluptates perferendis
-                tempora ipsam aspernatur iste magni ipsa culpa exercitationem, eligendi non blanditiis et maiores.
-                Provident rem dicta maxime. Fugit, saepe.
-                Unde doloremque tempore sed nostrum sequi quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>
+      $noresult = false;
 
-        <div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic dolor libero.
-                Numquam commodi nesciunt placeat cupiditate eaque reiciendis possimus illo voluptates perferendis
-                tempora ipsam aspernatur iste magni ipsa culpa exercitationem, eligendi non blanditiis et maiores.
-                Provident rem dicta maxime. Fugit, saepe.
-                Unde doloremque tempore sed nostrum sequi quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>
+      echo '<div class="result mb-3">
+              <h3><a href="' . $url . '" class="text-dark">' . $title . '</a></h3>
+              <p>' . $desc . '</p>
+            </div>';
+  }
 
-        <div class="result">
-            <h3> <a href="" class="text-dark">Can not install by Audio</a>
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nostrum. Repudiandae consequatur,
-                consectetur sed deleniti iste tempora quos, incidunt provident numquam quia nostrum. Rerum ipsam omnis
-                illo hic dolor libero.
-                Numquam commodi nesciunt placeat cupiditate eaque reiciendis possimus illo voluptates perferendis
-                tempora ipsam aspernatur iste magni ipsa culpa exercitationem, eligendi non blanditiis et maiores.
-                Provident rem dicta maxime. Fugit, saepe.
-                Unde doloremque tempore sed nostrum sequi quos doloribus, nihil quas numquam consectetur dicta
-                necessitatibus error natus exercitationem laboriosam eligendi, saepe nemo incidunt ea. Et nam assumenda
-                qui illo, eum voluptatibus.</p>
-        </div>
-    </div>
+  if ($noresult) {
+      echo '<div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">No Results Found</h4>
+              <p>Suggestions:</p>
+              <hr>
+              <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+                <li>Try more general keywords.</li>
+                <li>Try fewer keywords.</li>
+              </ul>
+            </div>';
+  }
+  ?>
 
-    <?php
-  include 'partials/_footer.php';
-?>
+</div>
+
+<?php include 'partials/_footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>

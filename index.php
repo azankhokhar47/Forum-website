@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
+
 </head>
 
 <body>
@@ -19,38 +19,69 @@
 ?>
 
     <!-- slider start here -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+    style="width:1350px; height:500px; margin:auto;">
 
-    <div id="carouselExampleIndicators" class="carousel slide" style="width:1350px; height:500px; margin:auto;">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner" style="height:500px;">
-            <div class="carousel-item active">
-                <img src="images/python3.img" class="d-block w-100" style="height:500px; object-fit:cover;" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="images/php3.img" class="d-block w-100" style="height:500px; object-fit:cover;" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="images/php4.img" class="d-block w-100" style="height:500px; object-fit:cover;" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <!-- ✅ Carousel Indicators (now 6 dots) -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+            aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+            aria-label="Slide 6"></button>
     </div>
+
+    <!-- ✅ Carousel Images -->
+    <div class="carousel-inner" style="height:500px;">
+        <div class="carousel-item active">
+            <img src="images/python3.img" class="d-block w-100" style="height:650px; object-fit:cover;"
+                alt="Python Slide">
+        </div>
+        <div class="carousel-item">
+            <img src="images/php3.img" class="d-block w-100" style="height:650px; object-fit:cover;" alt="PHP Slide">
+        </div>
+        <div class="carousel-item">
+            <img src="images/php4.img" class="d-block w-100" style="height:650px; object-fit:cover;" alt="PHP Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="images/php9.img.png" class="d-block w-100" style="height:650px; object-fit:cover;" alt="PHP Slide 3">
+        </div>
+        <div class="carousel-item">
+            <img src="images/php7.img" class="d-block w-100" style="height:650px; object-fit:cover;" alt="PHP Slide 4">
+        </div>
+        <div class="carousel-item">
+            <img src="images/php11.img" class="d-block w-100" style="height:650px; object-fit:cover;" alt="PHP Slide 5">
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Auto slide setup -->
+<script>
+  const carousel = document.querySelector('#carouselExampleIndicators');
+  new bootstrap.Carousel(carousel, {
+    interval: 3000, // 3 seconds
+    ride: 'carousel',
+    wrap: true
+  });
+</script>
+
+
+    <script>
+    // Optional: Ensure smooth automatic sliding (3s interval)
+    const carousel = document.querySelector('#carouselExampleIndicators');
+    new bootstrap.Carousel(carousel, {
+        interval: 3000, // 3 seconds between slides
+        ride: 'carousel',
+        wrap: true // loops back to first slide automatically
+    });
+    </script>
 
     <!-- catagories container start here   -->
 
